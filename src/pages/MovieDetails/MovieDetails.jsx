@@ -35,7 +35,7 @@ const MovieDetails = () => {
                 <img src={imageUrl} alt={title} />
                 <div>
                     <h2>{title}</h2>
-                    <p>User Score: {vote_average * 10}%</p>
+                    <p>User Score: {Math.round(vote_average * 10)}%</p>
                     <p>{overview}</p>
                     <p>{genresMovie}</p>
                 </div>

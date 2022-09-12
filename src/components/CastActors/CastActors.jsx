@@ -24,6 +24,5 @@ CastActors.propTypes = {
     cast: PropTypes.shape({
         character: PropTypes.string.isRequired,
         original_name: PropTypes.string.isRequired,
-        profile_path: PropTypes.string.isRequired,
     })
 };
