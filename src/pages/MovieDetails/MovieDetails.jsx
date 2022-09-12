@@ -19,7 +19,7 @@ const MovieDetails = () => {
         return null;
     }
 
-    const { id, title, vote_average, overview, genres, poster_path } = movie;
+    const { title, vote_average, overview, genres, poster_path } = movie;
     const fullImgUrl = `${IMAGE_URL}${poster_path}`;
     const imageUrl = poster_path ? fullImgUrl : defaultImage;
     const genresMovie = genres.map(item => item.name).join(' ');
