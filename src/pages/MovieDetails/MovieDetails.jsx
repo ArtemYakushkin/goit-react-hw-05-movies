@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import movieApi from "services/movieApi";
 import { IMAGE_URL } from "services/movieApi";
@@ -10,6 +11,7 @@ const MovieDetails = () => {
 
     const [movie, setMovie] = useState(null);
     const { movieId } = useParams();
+    const location = useLocation();
 
     useEffect(() => {
         movieApi.getMovie(movieId).then(movie => setMovie(movie))
@@ -26,17 +28,27 @@ const MovieDetails = () => {
 
     return (
         <>
-            {movie && (
+            <Link to={location?.state?.from ?? '/'}>
+                <button type="button">GO BACK</button>
+            </Link>
+            <div>
+                <img src={imageUrl} alt={title} />
                 <div>
-                    <img src={imageUrl} alt={title} />
-                    <div>
-                        <h2>{title}</h2>
-                        <p>User Score: {vote_average * 10}%</p>
-                        <p>{overview}</p>
-                        <p>{genresMovie}</p>
-                    </div>
+                    <h2>{title}</h2>
+                    <p>User Score: {vote_average * 10}%</p>
+                    <p>{overview}</p>
+                    <p>{genresMovie}</p>
                 </div>
-            )}
+            </div>
+            <ul>
+                <li>
+                    <Link to="cast" state={location.state}>Cast</Link>
+                </li>
+                <li>
+                    <Link to="reviews" state={location.state}>Reviews</Link>
+                </li>
+            </ul>
+            <Outlet/>
         </>
     )
 };
