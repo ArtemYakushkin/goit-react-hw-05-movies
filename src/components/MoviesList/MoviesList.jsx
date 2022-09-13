@@ -16,7 +16,7 @@ const MoviesList = ({ movies }) => {
                 const imageUrl = poster_path ? fullImgUrl : defaultImage;
                 return (
                     <li key={id}>
-                        <Link to={{ pathname: `/movies/${id}`, state: { from: location } }}>
+                        <Link to={`/movies/${id}`} state={{ from: location }}>
                             <img src={imageUrl} alt={title} />
                             <p>{title}</p>
                         </Link>
