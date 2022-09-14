@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { Title } from "./Home.styled";
 
 import movieApi from "services/movieApi";
 import MoviesList from "components/MoviesList/MoviesList";
@@ -14,7 +15,7 @@ const Home = () => {
 
     return (
         <div>
-            <h1>Trending today</h1>
+            <Title>Trending today</Title>
             {trendMovies && <MoviesList movies={trendMovies} />}
         </div>
     )

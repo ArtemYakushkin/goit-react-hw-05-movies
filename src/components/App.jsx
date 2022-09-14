@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
+import { Container } from "./App.styled";
 
 // import MovieDetails from "pages/MovieDetails/MovieDetails";
 // import Cast from "./Cast/Cast";
@@ -17,7 +18,7 @@ const Reviews = lazy(() => import('../components/Reviews/Reviews'));
 
 const App = () => {
   return (
-    <>
+    <Container>
       <Header />
       <Suspense fallback={<Loader />}>
         <Routes>
@@ -30,7 +31,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
-    </>
+    </Container>
   );
 };
 
