@@ -1,7 +1,8 @@
 
 import PropTypes from 'prop-types';
-// import { MdOutlineSearch } from "react-icons/md"
+import { MdOutlineSearch } from "react-icons/md"
 import { useState } from 'react';
+import { FormMovies, BtnSearch, InputSearch } from './Form.styled';
 
 const Form = ({onSubmit}) => {
 
@@ -19,21 +20,21 @@ const Form = ({onSubmit}) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <button type="submit">
-                    {/* <MdOutlineSearch size={20} /> */}
+            <FormMovies onSubmit={handleSubmit}>
+                <BtnSearch type="submit">
+                    <MdOutlineSearch size={25} />
                     Search
-                </button>
-                <input
+                </BtnSearch>
+                <InputSearch
                     type="text"
                     name='searchRequest'
                     value={searchRequest}
                     onChange={handleRequestChange}
                     autoComplete="off"
                     autoFocus
-                    placeholder="Search images and photos"
+                    placeholder="Search movies"
                 />
-            </form>
+            </FormMovies>
         </div>
     );
 };

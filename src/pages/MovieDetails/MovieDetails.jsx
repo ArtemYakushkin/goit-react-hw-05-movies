@@ -1,17 +1,50 @@
-// import styled from "styled-components";
+import styled from "styled-components";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { BtnGoBack, DetContainer, ImgContainer, Image, MovieName, Date } from "./MovieDetails.styled";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import { BiUser } from "react-icons/bi";
+import { BsListNested } from "react-icons/bs";
+import { BtnGoBack, DetContainer, ImgContainer, Image, MovieName, Date, Paragraph, Descr, Overview, AdditionalList, Item } from "./MovieDetails.styled";
 
 import movieApi from "services/movieApi";
 import { IMAGE_URL } from "services/movieApi";
 import defaultImage from "../../images/default-image.jpg"
 
-// const NavItem = styled(NavLink)`
-//     cursor: pointer;
-// `;
+const NavItem = styled(NavLink)`
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    width: 500px;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border: 4px solid #ffffff;
+    border-radius: 20px;
+    background-color: #ff6500;
+    text-align: center;
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
+    &.active {
+        border: 4px solid #ff6500;
+        background-color: #ffffff;
+        color: #ff6500;
+    }
+
+    :hover:not(.active),
+    :focus-visible:not(.active) {
+        border: 4px solid #ff6500;
+        background-color: #ffffff;
+        color: #ff6500;
+    }
+`;
 
 const MovieDetails = () => {
 
@@ -35,7 +68,9 @@ const MovieDetails = () => {
     return (
         <>
             <Link to={location?.state?.from ?? '/'}>
-                <BtnGoBack type="button">GO BACK</BtnGoBack>
+                <BtnGoBack type="button">
+                    <AiOutlineArrowLeft size={28}/>
+                </BtnGoBack>
             </Link>
             <DetContainer>
                 <ImgContainer>
@@ -43,19 +78,25 @@ const MovieDetails = () => {
                 </ImgContainer>
                 <div>
                     <MovieName>{title} <Date>({release_date.slice(0, 4)})</Date></MovieName>
-                    <p>User Score: {Math.round(vote_average * 10)}%</p>
-                    <p>{overview}</p>
-                    <p>{genresMovie}</p>
+                    <Paragraph>User Score: <Descr>{Math.round(vote_average * 10)}%</Descr></Paragraph>
+                    <Overview>{overview}</Overview>
+                    <Paragraph>Genres: <Descr>{genresMovie}</Descr></Paragraph>
                 </div>
             </DetContainer>
-            <ul>
-                <li>
-                    <NavLink to="cast" state={location.state}>Cast</NavLink>
-                </li>
-                <li>
-                    <NavLink to="reviews" state={location.state}>Reviews</NavLink>
-                </li>
-            </ul>
+            <AdditionalList>
+                <Item>
+                    <NavItem to="cast" state={location.state}>
+                        <BiUser size={20}/>
+                        CAST
+                    </NavItem>
+                </Item>
+                <Item>
+                    <NavItem to="reviews" state={location.state}>
+                        <BsListNested size={20}/>
+                        REVIEWS
+                    </NavItem>
+                </Item>
+            </AdditionalList>
             <Outlet/>
         </>
     )

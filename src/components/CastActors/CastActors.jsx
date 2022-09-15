@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Image, ActorName, ActorCharacter } from './CastActors.styled';
 
 import { IMAGE_URL } from "services/movieApi";
 import defaultImage from "../../images/default-user.png";
@@ -11,9 +12,9 @@ const CastActors = ({ cast }) => {
 
     return (
         <div>
-            <img src={imageUrl} alt={original_name} />
-            <h3>{original_name}</h3>
-            <p>{character}</p>
+            <Image src={imageUrl} alt={original_name} />
+            <ActorName>{original_name}</ActorName>
+            <ActorCharacter>{character}</ActorCharacter>
         </div>
     )
 };

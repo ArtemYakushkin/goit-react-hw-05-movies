@@ -8,7 +8,6 @@ import MoviesList from "components/MoviesList/MoviesList";
 
 const Movies = () => { 
 
-    // const [query, setQuery] = useState('');
     const [movies, setMovies] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
     const [search, setSearch] = useState(searchParams.get('query') || '');

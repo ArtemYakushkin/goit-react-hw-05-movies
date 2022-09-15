@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { ListReviews, ItemReviews, NoData } from "./Reviews.styled";
 import movieApi from "services/movieApi";
 import ReviewsItem from "components/ReviewsItem/ReviewsItem";
 
@@ -16,15 +17,15 @@ const Reviews = () => {
     return (
         <div>
             {movieReviews && movieReviews.length ? (
-                <ul>
+                <ListReviews>
                     {movieReviews.map(item => (
-                        <li key={item.id}>
+                        <ItemReviews key={item.id}>
                             <ReviewsItem reviews={item} />
-                        </li>
+                        </ItemReviews>
                     ))}
-                </ul>
+                </ListReviews>
             ) : (
-                <p>No data</p>
+                <NoData>No data</NoData>
             )}
         </div>
     )

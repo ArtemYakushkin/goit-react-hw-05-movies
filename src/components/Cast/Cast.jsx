@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { ActorsList, ActorsItem, NoData } from "./Cast.styled";
 import movieApi from "services/movieApi";
 import CastActors from "components/CastActors/CastActors";
 
@@ -16,15 +17,15 @@ const Cast = () => {
     return (
         <div>
             {movieCast && movieCast.length ? (
-                <ul>
+                <ActorsList>
                     {movieCast.map(item => (
-                        <li key={item.id}>
+                        <ActorsItem key={item.id}>
                             <CastActors cast={item} />
-                        </li>
+                        </ActorsItem>
                     ))}
-                </ul>
+                </ActorsList>
             ) : (
-                <p>No data</p>
+                <NoData>No data</NoData>
             )}
         </div>
     )

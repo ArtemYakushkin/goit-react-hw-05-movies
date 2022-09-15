@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { ContainerTitle, Username, Created, Text } from './ReviewsItem.styled';
 
 const ReviewsItem = ({ reviews }) => {
     
@@ -6,11 +7,11 @@ const ReviewsItem = ({ reviews }) => {
 
     return (
         <div>
-            <div>
-                <h4>{name ? name : 'Anonymus'}</h4>
-                <p>| {new Date(created_at).toLocaleDateString()}</p>
-            </div>
-            <p>{content}</p>
+            <ContainerTitle>
+                <Username>{name ? name : 'Anonymus'}</Username>
+                <Created>| {new Date(created_at).toLocaleDateString()}</Created>
+            </ContainerTitle>
+            <Text>{content}</Text>
         </div>
     )
 };
@@ -21,7 +22,6 @@ ReviewsItem.propTypes = {
     reviews: PropTypes.shape({
         author_details: PropTypes.shape({
             name: PropTypes.string.isRequired,
-            // rating: PropTypes.number.isRequired,
         }),
         created_at: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired,
